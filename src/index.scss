@@ -1,4 +1,10 @@
+html{
+  user-select: none;
+}
+
 body {
+  min-height: 100vh;
+  height: 100%;
   margin: 0;
   padding: 20px 40px;
   font-family: 'Open Sans Condensed', sans-serif;
@@ -6,6 +12,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root{
+  min-height: 90vh;
+  height: 100%;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

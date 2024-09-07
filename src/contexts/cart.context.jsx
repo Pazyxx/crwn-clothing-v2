@@ -1,4 +1,8 @@
 import { createContext, useState, useEffect } from 'react';
+import { UserContext } from './user.context';
+import { useContext } from 'react';
+import { updateCartItems } from '../utils/firebase/firebase.utils';
+import { getCartItems } from '../utils/firebase/firebase.utils';
 
 const addCartItem = (cartItems, productToAdd) => {
   const existingCartItem = cartItems.find(
@@ -54,6 +58,33 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [cartCount, setCartCount] = useState(0);
   const [cartTotal, setCartTotal] = useState(0);
+  const {currentUser} = useContext(UserContext)
+
+  useEffect(() => {
+    if (currentUser){
+      const userRef = async() => {
+        await updateCartItems(currentUser.uid, cartItems)
+      }
+      userRef()
+    }
+    
+  }, [cartItems])
+
+  useEffect(() => {
+    if (currentUser){
+      const cartItemRef = async() => {
+        const initialCart = await getCartItems(currentUser.uid)
+        if (initialCart[0]){
+          setCartItems(initialCart[1].data().cart)
+        }
+        
+      }
+      cartItemRef()
+    }else{
+      setCartItems([])
+    }
+    
+  }, [currentUser])
 
   useEffect(() => {
     const newCartCount = cartItems.reduce(
