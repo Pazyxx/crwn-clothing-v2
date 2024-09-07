@@ -1,5 +1,6 @@
 .checkout-container {
-  width: 55%;
+  width: 100%;
+  max-width: 1200px;
   min-height: 90vh;
   display: flex;
   flex-direction: column;
@@ -27,5 +28,14 @@
     margin-top: 30px;
     margin-left: auto;
     font-size: 36px;
+  }
+}
+
+/* Media query to hide the checkout header on smaller screens */
+@media (max-width: 768px) {
+  .checkout-container {
+    .checkout-header {
+      display: none;
+    }
   }
 }
