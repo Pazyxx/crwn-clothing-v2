@@ -8,7 +8,7 @@ export const CategoryTitle = styled.h2`
 
 export const CategoryContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     column-gap: 10px;
     row-gap: 50px;
     @media (max-width: 750px){
